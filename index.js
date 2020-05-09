@@ -1,13 +1,8 @@
 
 const app = document.getElementById('root')
 const container = document.createElement('div')
-const th1 = document.createElement('th')
-th1.textContent = "Movie name"
-const th2 = document.createElement('th')
-th2.textContent = "Movie title"
 app.appendChild(container)
-container.appendChild(th1)
-container.appendChild(th2)
+
 
 
 var request = new XMLHttpRequest()
@@ -18,18 +13,14 @@ request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
     data.forEach(movie => {
       const card = document.createElement('tr')
-      
-
-      const tr1 = document.createElement('td')
-      tr1.textContent = movie.title
-
-      const tr2 = document.createElement('td')
-      tr2.textContent =movie.id
-
-      
       container.appendChild(card)
-      card.appendChild(tr1)
-      card.appendChild(tr2)
+      let keys =[];
+      for(var key in movie){
+        var tr1 = document.createElement('td')
+        tr1.textContent = movie[key]
+        card.appendChild(tr1)
+      console.log(keys);
+      }
     })
   } else {
     const errorMessage = document.createElement('marquee')
