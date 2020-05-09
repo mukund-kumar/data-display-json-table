@@ -28,8 +28,8 @@ request.onload = function() {
       }
     })
   } else {
-    const errorMessage = document.createElement('marquee')
-    errorMessage.textContent = `Gah, it's not working!`
+    const errorMessage = document.createElement('not working')
+    errorMessage.textContent = ` it's not working!`
     app.appendChild(errorMessage)
   }
 }
