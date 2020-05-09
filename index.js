@@ -8,18 +8,23 @@ app.appendChild(container)
 var request = new XMLHttpRequest()
 request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
 request.onload = function() {
-  // Begin accessing JSON data here
+  // to set the title of table
   var data = JSON.parse(this.response)
+  console.log(Object.keys(data[0]));
+  for(key in Object.keys(data[0]) ) {
+    var th = document.createElement('th')
+        th.textContent = (Object.keys(data[0]))[key]
+        container.appendChild(th)
+  }
+  // Begin accessing JSON data here
   if (request.status >= 200 && request.status < 400) {
-    data.forEach(movie => {
+    data.forEach(data => {
       const card = document.createElement('tr')
       container.appendChild(card)
-      let keys =[];
-      for(var key in movie){
+      for(var key in data){
         var tr1 = document.createElement('td')
-        tr1.textContent = movie[key]
+        tr1.textContent = data[key]
         card.appendChild(tr1)
-      console.log(keys);
       }
     })
   } else {
